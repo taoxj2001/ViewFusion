@@ -1,0 +1,133 @@
+# ViewFusionReasoner (VFR)
+
+ViewFusionReasoner (VFR) is a two-stage framework for **multi-view spatial reasoning** that explicitly separates **cross-view spatial pre-alignment** from **question answering**. It is trained with (1) **SFT** on structured reasoning traces and (2) **GRPO** reinforcement learning to improve correctness while stabilizing the intended two-stage reasoning behavior. 
+
+---
+
+
+
+## 🤗 🔗 Links 
+
+*  [Model Weights](https://huggingface.co/xjtao/VFR-4B)
+* [Training Dataset](https://huggingface.co/datasets/xjtao/VFR-traindata)
+* **Paper:** TODO
+
+
+---
+
+## ⚙️ Installation
+
+### 1) Clone
+
+```bash
+git clone https://github.com/<your_org>/ViewFusionReasoner.git
+cd ViewFusionReasoner
+```
+
+### 2) Create environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+### 3) Install dependencies
+
+```bash
+pip install -U pip
+pip install -r requirements.txt
+```
+
+> Make sure your PyTorch/CUDA stack matches your machine. (We assume a standard Linux CUDA environment.)
+
+---
+
+## 📦 Dataset Preparation
+
+###  Download & extract
+
+Download from the dataset link above, then extract into a directory such as:
+
+```text
+VFR-traindata/
+  GRPO_data/
+    images/296/296_2.png
+    ...
+    metadata.jsonl   (or train.jsonl / val.jsonl)
+  SFT_data/
+    images/1/1_1.jpg
+    ...
+    metadata.jsonl
+```
+
+
+---
+
+## 🚀 Training
+
+VFR uses a **two-stage training pipeline**:
+
+1. **Stage 1: SFT** — learn the structured two-stage reasoning format.
+2. **Stage 2: GRPO** — improve answer correctness while maintaining the reasoning structure. 
+
+### 🧪 Stage 1: Supervised Fine-Tuning (SFT)
+
+```bash
+bash sft.sh
+```
+
+### 🏋️ Stage 2: GRPO Reinforcement Learning
+
+```bash
+bash grpo.sh
+```
+
+---
+
+
+## 📊 Evaluation
+
+### 🔍 MMSI-Bench
+
+Before evaluation, download the MMSI images and place them under `MMSI/images/` using the expected naming convention, e.g.:
+
+```text
+MMSI/images/0_0.jpg
+MMSI/images/0_1.jpg
+...
+```
+
+Then run:
+
+```bash
+python eval_mmsi.py
+```
+
+
+
+---
+
+## 🧩 Prompt / Output Format
+
+VFR enforces a strict 3-part output in order:
+
+1. `<spatial_thinking>`: infer viewpoint changes / cross-view correspondences
+2. `<thinking>`: solve the question conditioned on the spatial workspace
+3. `<answer>`: output only the option letter (A/B/C/D)
+
+(See the prompt template described in the paper appendix.) 
+
+---
+
+## 📝 Citation
+
+```bibtex
+@misc{viewfusionreasoner2026,
+  title={ViewFusionReasoner: Structured Spatial Thinking Chains for Multi-View Reasoning},
+  author={TODO},
+  year={2026},
+  note={Under Review}
+}
+```
+
+
