@@ -1,6 +1,6 @@
-# ViewFusionReasoner (VFR)
+# ViewFusion
 
-ViewFusionReasoner (VFR) is a two-stage framework for **multi-view spatial reasoning** that explicitly separates **cross-view spatial pre-alignment** from **question answering**. It is trained with (1) **SFT** on structured reasoning traces and (2) **GRPO** reinforcement learning to improve correctness while stabilizing the intended two-stage reasoning behavior. 
+ViewFusion is a two-stage framework for **multi-view spatial reasoning** that explicitly separates **cross-view spatial pre-alignment** from **question answering**. It is trained with (1) **SFT** on structured reasoning traces and (2) **GRPO** reinforcement learning to improve correctness while stabilizing the intended two-stage reasoning behavior. 
 
 ---
 
@@ -27,8 +27,8 @@ cd ViewFusionReasoner
 ### 2) Create environment
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+conda create -n vf python=3.10 -y
+conda activate vf
 ```
 
 ### 3) Install dependencies
