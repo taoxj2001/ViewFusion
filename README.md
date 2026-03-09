@@ -49,7 +49,6 @@ pip install -r requirements.txt
 Download from the dataset link above, then extract into a directory such as:
 
 ```text
-VFR-traindata/
   GRPO_data/
     images/296/296_2.png
     ...

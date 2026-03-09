@@ -7,7 +7,7 @@ export LOG_PATH="./vllm_run.txt"
 export WANDB_MODE=offline
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 QWEN_PATH='Put your model path here'
-HF_DATASET="VFR-traindata/GRPO_data/GRPO.jsonl"
+HF_DATASET="GRPO_data/metadata.jsonl"
 OUTPUT_DIR="./log/VFR-4B"
 if [ ! -d "$OUTPUT_DIR" ]; then
  mkdir -p "$OUTPUT_DIR"

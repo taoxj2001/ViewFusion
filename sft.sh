@@ -11,7 +11,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node="4" \
     sft.py \
     --output_dir "./log/VFR-SFT" \
     --model_name_or_path "Put your model path here" \
-    --dataset_name "VFR-traindata/SFT_data/SFT.jsonl" \
+    --dataset_name "SFT_data/SFT.jsonl" \
     --deepspeed local_scripts/zero2.json \
     --per_device_train_batch_size 1 \
     --gradient_accumulation_steps 2 \
