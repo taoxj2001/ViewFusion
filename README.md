@@ -8,7 +8,7 @@ ViewFusion is a two-stage framework for **multi-view spatial reasoning** that ex
 
 ## 🤗 🔗 Links 
 
-*  [Model Weights](https://huggingface.co/xjtao/ViewFusion-4B)
+*  [Model Weights](https://huggingface.co/xjtao/ViewFusion)
 * [Training Dataset](https://huggingface.co/datasets/xjtao/ViewFusion-traindata)
 * [Paper](https://arxiv.org/abs/2603.06024)
 
