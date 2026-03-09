@@ -8,9 +8,9 @@ ViewFusion is a two-stage framework for **multi-view spatial reasoning** that ex
 
 ## 🤗 🔗 Links 
 
-*  [Model Weights](https://huggingface.co/xjtao/VFR-4B)
-* [Training Dataset](https://huggingface.co/datasets/xjtao/VFR-traindata)
-* **Paper:** TODO
+*  [Model Weights](https://huggingface.co/xjtao/ViewFusion-4B)
+* [Training Dataset](https://huggingface.co/datasets/xjtao/ViewFusion-traindata)
+* [Paper](https://arxiv.org/abs/2603.06024)
 
 
 ---
@@ -20,8 +20,8 @@ ViewFusion is a two-stage framework for **multi-view spatial reasoning** that ex
 ### 1) Clone
 
 ```bash
-git clone https://github.com/<your_org>/ViewFusionReasoner.git
-cd ViewFusionReasoner
+git clone https://github.com/taoxj2001/ViewFusion.git
+cd ViewFusion
 ```
 
 ### 2) Create environment
@@ -65,7 +65,7 @@ VFR-traindata/
 
 ## 🚀 Training
 
-VFR uses a **two-stage training pipeline**:
+ViewFusion uses a **two-stage training pipeline**:
 
 1. **Stage 1: SFT** — learn the structured two-stage reasoning format.
 2. **Stage 2: GRPO** — improve answer correctness while maintaining the reasoning structure. 
@@ -109,7 +109,7 @@ python eval_mmsi.py
 
 ## 🧩 Prompt / Output Format
 
-VFR enforces a strict 3-part output in order:
+ViewFusion enforces a strict 3-part output in order:
 
 1. `<spatial_thinking>`: infer viewpoint changes / cross-view correspondences
 2. `<thinking>`: solve the question conditioned on the spatial workspace
@@ -122,11 +122,14 @@ VFR enforces a strict 3-part output in order:
 ## 📝 Citation
 
 ```bibtex
-@misc{viewfusionreasoner2026,
-  title={ViewFusionReasoner: Structured Spatial Thinking Chains for Multi-View Reasoning},
-  author={TODO},
-  year={2026},
-  note={Under Review}
+@misc{tao2026viewfusionstructuredspatialthinking,
+      title={ViewFusion: Structured Spatial Thinking Chains for Multi-View Reasoning}, 
+      author={Xingjian Tao and Yiwei Wang and Yujun Cai and Yifan Song and Jing Tang},
+      year={2026},
+      eprint={2603.06024},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2603.06024}, 
 }
 ```
 
