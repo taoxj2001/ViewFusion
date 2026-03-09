@@ -368,7 +368,7 @@ class Qwen3VLGRPOVLLMTrainerModified(Trainer):
                 distributed_executor_backend="external_launcher",
                 seed=self.accelerator.process_index // self.vllm_tensor_parallel_size,
 
-                max_num_batched_tokens=4096,  # TRL 推荐值（避免 v1 profiler 误判）
+                max_num_batched_tokens=4096,
 
                 enable_prefix_caching=True,
                 limit_mm_per_prompt={"image": 10, "video": 1},
@@ -528,9 +528,9 @@ class Qwen3VLGRPOVLLMTrainerModified(Trainer):
         if self.args.use_vllm:
             should_load_weights = False
             if self.vllm_tensor_parallel_size == 1:
-                should_load_weights = True  # 所有人都加载
+                should_load_weights = True
             elif self.accelerator.is_main_process:
-                should_load_weights = True  # 兼容 TP>1 的旧逻辑
+                should_load_weights = True
 
             if self.state.global_step != self._last_loaded_step:
                 with unwrap_model_for_generation(
@@ -727,7 +727,7 @@ class Qwen3VLGRPOVLLMTrainerModified(Trainer):
                         )
             except ValueError as e:
                 if "Image features and image tokens do not match" in str(e):
-                    return torch.tensor(0.0, device=self.args.device)  # <- 直接跳过本 step（上层要识别 None 并 skip）
+                    return torch.tensor(0.0, device=self.args.device)
                 raise
 
         ref_per_token_logps = ref_per_token_logps[:, prompt_length - 1:]
@@ -852,7 +852,7 @@ class Qwen3VLGRPOVLLMTrainerModified(Trainer):
         num_devices = max(1, gathered_rewards.size(0) // self.num_generations)
         rewards_per_device = gathered_rewards.view(num_devices, -1)  # flexible view
 
-        # 简单处理 metric，避免 shape 错误
+
         self._metrics["reward"].append(gathered_rewards.mean().item())
         self._metrics["reward_std"].append(self.accelerator.gather_for_metrics(std_grouped_rewards).mean().item())
 
